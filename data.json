@@ -1,0 +1,139 @@
+{
+    "users": [
+        {
+            "name": "Template",
+            "email": "template@email.com",
+            "username": "Template",
+            "password": "123"
+        },
+        {
+            "name": "Yash Phadtare",
+            "email": "yashphadtare211@gmail.com",
+            "username": "yash",
+            "password": "123"
+        }
+    ],
+    "yash": {
+        "doctors": [
+            {
+                "name": "Dr. Karan Ganesh Jaybhay",
+                "mobile": "8999612125",
+                "email": "karan@123",
+                "gender": "Male",
+                "dob": "1992-05-17",
+                "address": "ABC",
+                "specialization": "General Physician",
+                "experience": "12",
+                "qualification": "MBBS",
+                "consultation_fee": "200"
+            },
+            {
+                "name": "Dr. Pruthviraj Bhoite",
+                "mobile": "8999612125",
+                "email": "yashphadtare211@gmail.com",
+                "gender": "Male",
+                "dob": "2005-06-12",
+                "address": "ABC",
+                "specialization": "Cardiologist",
+                "experience": "20",
+                "qualification": "MBBS",
+                "consultation_fee": "200"
+            }
+        ],
+        "appointments": [
+            {
+                "patient_name": "Shubham Salunke",
+                "doctor": "Dr. Karan Jaybhay",
+                "date": "2025-03-20",
+                "time": "09:00",
+                "status": "Denied"
+            },
+            {
+                "patient_name": "Shubham Salunke",
+                "doctor": "Dr. Karan Jaybhay",
+                "date": "2025-03-20",
+                "time": "09:30",
+                "status": "Scheduled"
+            },
+            {
+                "patient_name": "Shubham Salunke",
+                "doctor": "Dr. Pruthviraj Bhoite",
+                "date": "5005-02-12",
+                "time": "00:02",
+                "status": "Scheduled"
+            }
+        ],
+        "patients": [
+            {
+                "name": "Shubham Salunke",
+                "mobile": "8999612125",
+                "email": "yashphadtare211@gmail.com",
+                "gender": "Male",
+                "address": "ABC",
+                "dob": "2004-12-10"
+            }
+        ]
+    },
+    "Template": {
+        "doctors": [
+            {
+                "name": "Dr. Karan Jaybhay",
+                "mobile": "8999612125",
+                "email": "karan@123",
+                "gender": "Male",
+                "dob": "1980-12-10",
+                "address": "ABC",
+                "specialization": "General Physician",
+                "experience": "15",
+                "qualification": "MBBS",
+                "consultation_fee": "200",
+                "start_time": "07:00",
+                "end_time": "12:00",
+                "break_start": "09:00",
+                "break_end": "10:00"
+            },
+            {
+                "name": "Dr. Pruthviraj Bhoite",
+                "mobile": "8999612125",
+                "email": "yashphadtare1@gmail.com",
+                "gender": "Male",
+                "dob": "1990-03-25",
+                "address": "bhvdvjas",
+                "specialization": "Cardiologist",
+                "experience": "10",
+                "qualification": "MBBS",
+                "consultation_fee": "500",
+                "start_time": "05:00",
+                "break_start": "09:00",
+                "break_end": "10:00",
+                "end_time": "12:00"
+            }
+        ],
+        "appointments": [
+            {
+                "patient_name": "Shubham Salunke",
+                "doctor": "Dr. Pruthviraj Bhoite",
+                "date": "2025-03-22",
+                "time": "09:00 AM",
+                "status": "Scheduled"
+            },
+            {
+                "patient_name": "Shubham Salunke",
+                "doctor": "Dr. Karan Jaybhay",
+                "date": "2025-03-22",
+                "time": "07:00 AM",
+                "status": "Scheduled"
+            }
+        ],
+        "patients": [
+            {
+                "name": "Shubham Salunke",
+                "mobile": "8999612125",
+                "email": "yashphadtare211@gmail.com",
+                "gender": "Male",
+                "address": "ABC",
+                "dob": "2005-06-12"
+            }
+        ]
+    }
+}

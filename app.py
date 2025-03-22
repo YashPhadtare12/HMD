@@ -1,10 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session, send_from_directory
 import json
 import os
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
+
+# Serve static files from the 'static' directory
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory(os.path.join(app.root_path, 'static'), filename)
 
 def load_data():
     if os.path.exists("data.json"):
@@ -181,7 +186,6 @@ def delete_appointment():
     save_data(data)
     return jsonify({"success": True})
     
-
 @app.route("/view-doctors")
 def view_doctors():
     if 'username' not in session:

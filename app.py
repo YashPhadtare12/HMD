@@ -1,27 +1,56 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session, send_from_directory
-import json
 import os
+import json
+import subprocess
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-# Serve static files from the 'static' directory
-@app.route('/static/<path:filename>')
-def serve_static(filename):
-    return send_from_directory(os.path.join(app.root_path, 'static'), filename)
+# Define the path to the data.json file in the repository
+DATA_PATH = os.path.join(os.path.dirname(__file__), 'data.json')
+
+# GitHub repository details
+GITHUB_TOKEN = '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'  # Your GitHub token
+GIT_USERNAME = 'YashPhadtare12'  # Your GitHub username
+GIT_EMAIL = 'yashphadtare211@gmail.com'  # Your GitHub email
+REPO_URL = 'https://github.com/YashPhadtare12/HMD.git'  # Your repository URL
 
 def load_data():
-    if os.path.exists("data.json"):
-        with open("data.json", "r") as file:
+    """Load data from data.json."""
+    if os.path.exists(DATA_PATH):
+        with open(DATA_PATH, "r") as file:
             return json.load(file)
     return {}
 
 def save_data(data):
-    with open("data.json", "w") as file:
+    """Save data to data.json and push changes to GitHub."""
+    with open(DATA_PATH, "w") as file:
         json.dump(data, file, indent=4)
+    commit_and_push_changes()  # Commit and push changes to GitHub
+
+def commit_and_push_changes():
+    """Commit and push changes to the GitHub repository."""
+    try:
+        # Configure Git user
+        subprocess.run(['git', 'config', '--global', 'user.name', GIT_USERNAME], check=True)
+        subprocess.run(['git', 'config', '--global', 'user.email', GIT_EMAIL], check=True)
+
+        # Add the file to the staging area
+        subprocess.run(['git', 'add', 'data.json'], check=True)
+
+        # Commit the changes
+        subprocess.run(['git', 'commit', '-m', 'Update data.json with new entries'], check=True)
+
+        # Push the changes to the remote repository using the token
+        subprocess.run(['git', 'push', REPO_URL, 'main'], check=True)  # Replace 'main' with your branch name
+
+        print("Changes pushed to GitHub successfully.")
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to push changes to GitHub: {e}")
 
 def generate_slots(start_time, end_time, break_start, break_end):
+    """Generate time slots for appointments."""
     slots = []
     current_time = datetime.strptime(start_time, "%H:%M")
     end_time = datetime.strptime(end_time, "%H:%M")

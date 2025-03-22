@@ -25,16 +25,9 @@ def load_data():
 
 def save_data(data):
     """Save data to data.json and push changes to GitHub."""
-    try:
-        # Write data to data.json
-        with open(DATA_PATH, "w") as file:
-            json.dump(data, file, indent=4)
-        os.chmod(DATA_PATH, 0o666)  # Ensure write permissions
-
-        # Commit and push changes to GitHub
-        commit_and_push_changes()
-    except Exception as e:
-        print(f"Failed to save data: {e}")
+    with open(DATA_PATH, "w") as file:
+        json.dump(data, file, indent=4)
+    commit_and_push_changes()  # Commit and push changes to GitHub
 
 def commit_and_push_changes():
     """Commit and push changes to the GitHub repository."""
@@ -50,13 +43,13 @@ def commit_and_push_changes():
         subprocess.run(['git', 'commit', '-m', 'Update data.json with new entries'], check=True)
 
         # Push the changes to the remote repository using the token
-        subprocess.run(['git', 'push', REPO_URL, 'main', '--force'], check=True)  # Replace 'main' with your branch name
+        subprocess.run(['git', 'push', REPO_URL, 'main'], check=True)
 
         print("Changes pushed to GitHub successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Failed to push changes to GitHub: {e}")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        print("Git push output:", e.stdout)
+        print("Git push error:", e.stderr)
 
 def generate_slots(start_time, end_time, break_start, break_end):
     """Generate time slots for appointments."""
